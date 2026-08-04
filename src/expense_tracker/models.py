@@ -36,8 +36,8 @@ class Expense:
     def from_dict(cls, data: dict[str, Any]) -> Self:
         return cls(
             id=UUID(data["id"]),
-            date=date.fromisoformat(data.get("date")),
-            amount=Decimal(data.get("amount")),
-            category=data.get("category"),
+            date=date.fromisoformat(data["date"]),
+            amount=Decimal(data["amount"]),
+            category=data["category"],
             note=data.get("note")
         )
