@@ -26,5 +26,5 @@ def save_expenses(expenses, filepath=DATA_FILE):
     # Automatically creates the data folder if it deos not exist
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
 
-    with open(filepath, "w", endcoding="utf-8") as f:
+    with open(filepath, "w", encoding="utf-8") as f:
         json.dump(expenses, f, indent=4, ensure_ascii=False)
