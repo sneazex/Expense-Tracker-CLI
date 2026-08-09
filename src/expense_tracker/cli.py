@@ -27,7 +27,7 @@ def handle_add(args):
 
     expenses.append(expense)
 
-    save_expenses(DATA_FILE, expenses)
+    save_expenses(expenses, DATA_FILE)
 
     print("Expense added successfully.")
 
@@ -90,7 +90,7 @@ def handle_delete(args):
         print("Expense not found.")
         return
 
-    save_expenses(DATA_FILE, expenses)
+    save_expenses(expenses, DATA_FILE)
 
     print("Expense deleted successfully.")
 
