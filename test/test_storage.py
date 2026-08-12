@@ -22,7 +22,7 @@ def test_load_non_existent_file():
 def test_save_and_load_expenses():
     # Test saving and loading expenses
     sample_data = [{"id": 1, "amount": 12.5, "category": "food", "note": "lunch"}]
-    save_expenses(sample_data, filepath = TEST_FILE)
+    save_expenses(TEST_FILE, sample_data)
     assert os.path.exists(TEST_FILE) # Check if file was created
 
     loaded_data = load_expenses(TEST_FILE)
