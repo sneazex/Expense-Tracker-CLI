@@ -1,13 +1,13 @@
 import os
 import pytest
-from src.expense_tracker.storage import load_expenses, save_expenses
+from datetime import date
+from src.expense_tracker.models import Expense
+from src.expense_tracker.storage import save_expenses, load_expenses
 
-# temporary file path
-TEST_FILE = os.path.join("data", "test_expenses.json")
+TEST_FILE = "test_expenses.json"
 
 @pytest.fixture(autouse=True)
 def cleanup():
-    #Cleanup before and after each test
     if os.path.exists(TEST_FILE):
         os.remove(TEST_FILE)
     yield
@@ -15,15 +15,16 @@ def cleanup():
         os.remove(TEST_FILE)
 
 def test_load_non_existent_file():
-    # Test loading from a non-existent file
     result = load_expenses(TEST_FILE)
     assert result == []
 
 def test_save_and_load_expenses():
-    # Test saving and loading expenses
-    sample_data = [{"id": 1, "amount": 12.5, "category": "food", "note": "lunch"}]
-    save_expenses(sample_data, filepath = TEST_FILE)
-    assert os.path.exists(TEST_FILE) # Check if file was created
+    test_uuid = "123e4567-e89b-12d3-a456-426614174000"
+    sample_expense = Expense(id=test_uuid, date=date(2026, 8, 14), amount=12.5, category="food", note="lunch")
+    save_expenses(TEST_FILE, [sample_expense])
+    assert os.path.exists(TEST_FILE)
 
     loaded_data = load_expenses(TEST_FILE)
-    assert loaded_data == sample_data #Check if loaded data matches saved data
+    assert len(loaded_data) == 1
+    assert str(loaded_data[0].id) == test_uuid
+    assert loaded_data[0].amount == 12.5
