@@ -1,10 +1,12 @@
 from collections import defaultdict
+from decimal import Decimal
+
 
 def total(expenses):
     return sum(e.amount for e in expenses)
 
 def total_by_category(expenses):
-    totals = defaultdict(float)
+    totals = defaultdict(Decimal)
     for e in expenses:
         totals[e.category] += e.amount
     return dict(totals)

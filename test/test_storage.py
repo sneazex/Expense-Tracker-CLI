@@ -1,10 +1,10 @@
 import os
-from datetime import date
 import pytest
-from src.expense_tracker.storage import load_expenses, save_expenses
+from datetime import date
 from src.expense_tracker.models import Expense
+from src.expense_tracker.storage import save_expenses, load_expenses
 
-TEST_FILE = os.path.join("data", "test_expenses.json")
+TEST_FILE = "test_expenses.json"
 
 @pytest.fixture(autouse=True)
 def cleanup():
@@ -26,6 +26,5 @@ def test_save_and_load_expenses():
 
     loaded_data = load_expenses(TEST_FILE)
     assert len(loaded_data) == 1
-    # id nesnesini string'e çevirip kontrol ediyoruz
     assert str(loaded_data[0].id) == test_uuid
     assert loaded_data[0].amount == 12.5
