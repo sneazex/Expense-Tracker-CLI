@@ -1,7 +1,6 @@
 import argparse
 from datetime import date
 from decimal import Decimal
-from uuid import uuid4
 
 from src.expense_tracker.models import Expense
 from src.expense_tracker.reports import (
@@ -10,6 +9,7 @@ from src.expense_tracker.reports import (
     total_by_category,
 )
 from src.expense_tracker.storage import load_expenses, save_expenses
+from src.expense_tracker.utils import generate_id
 
 DATA_FILE = "data/expenses.json"
 
@@ -18,7 +18,7 @@ def handle_add(args):
     expenses = load_expenses(DATA_FILE)
 
     expense = Expense(
-        id=uuid4(),
+        id=generate_id(expenses),
         date=date.today(),
         amount=Decimal(args.amount),
         category=args.category,

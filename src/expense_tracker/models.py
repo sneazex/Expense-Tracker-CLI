@@ -7,7 +7,7 @@ from uuid import UUID
 
 @dataclass
 class Expense:
-    id: UUID
+    id: int
     date: date
     amount: Decimal
     category: str
@@ -25,7 +25,7 @@ class Expense:
 
     def to_dict(self) -> dict[str, Any]:
         return {
-            "id": str(self.id),
+            "id": self.id,
             "date": self.date.isoformat(),
             "amount": str(self.amount),
             "category": self.category,
@@ -35,7 +35,7 @@ class Expense:
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> Self:
         return cls(
-            id=UUID(data["id"]),
+            id=data["id"],
             date=date.fromisoformat(data["date"]),
             amount=Decimal(data["amount"]),
             category=data["category"],
