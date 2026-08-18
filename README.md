@@ -32,6 +32,7 @@ The Expense Tracker CLI is a Python-based command-line tool built to streamline 
 ```
    ## Usage
 Run the commands below using `main.py`:
+
  **Add an expense:**
 ```bash
   python main.py add --amount 12.50 --category food --note "Lunch"
