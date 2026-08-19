@@ -26,10 +26,6 @@ The Expense Tracker CLI is a Python-based command-line tool built to streamline 
    # On macOS and Linux:
    source .venv/bin/activate
 ```
-3. **Install Dependencies:**
-```bash
-    pip install -r requirements.txt
-```
    ## Usage
 Run the commands below using `main.py`:
 
